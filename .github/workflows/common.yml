@@ -1,0 +1,24 @@
+# my-app/.github/workflows/common.yml
+name: Common Workflow
+
+on:
+  workflow_call:
+    inputs:
+      lint_script:
+        required: false
+        type: string
+
+jobs:
+  run-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repo (my-next)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run lint script
+        run: |
+          chmod +x ${{ inputs.lint_script }}
+          ./${{ inputs.lint_script }}
