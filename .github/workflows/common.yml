@@ -22,6 +22,11 @@ jobs:
       - name: Set base branch (main)
         run: echo "BASE_BRANCH=origin/main" >> $GITHUB_ENV
 
+      - name: print lint script
+        run: |
+          echo {{ inputs.lint_args }}
+
+
       - name: Run lint script
         run: |
           chmod +x ${{ inputs.lint_script }}
