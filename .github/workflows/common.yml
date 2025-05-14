@@ -6,9 +6,6 @@ on:
       lint_script:
         required: true
         type: string
-      lint_args:
-        required: false
-        type: string
 
 jobs:
   run-lint:
@@ -21,10 +18,15 @@ jobs:
           repository: ${{ github.repository }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set base branch (from GitHub PR)
-        run: echo "BASE_BRANCH=origin/${GITHUB_BASE_REF:-main}" >> $GITHUB_ENV
+      - name: Get changed files (push)
+        id: changes
+        run: |
+          git fetch origin
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+          cat changed_files.txt
+          echo "CHANGED_FILES=$(paste -sd' ' changed_files.txt)" >> $GITHUB_ENV
 
       - name: Run lint script
         run: |
           chmod +x ${{ inputs.lint_script }}
-          ./${{ inputs.lint_script }} ${{ inputs.lint_args }}
+          ./${{ inputs.lint_script }} $CHANGED_FILES
