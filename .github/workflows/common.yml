@@ -1,10 +1,10 @@
-# my-app/.github/workflows/common.yml
-name: Common Workflow
-
 on:
   workflow_call:
     inputs:
       lint_script:
+        required: true
+        type: string
+      lint_args:
         required: false
         type: string
 
@@ -12,13 +12,17 @@ jobs:
   run-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout target repo (my-next)
+      - name: Checkout calling repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0  # 差分検出に必要
           repository: ${{ github.repository }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set base branch (main)
+        run: echo "BASE_BRANCH=origin/main" >> $GITHUB_ENV
 
       - name: Run lint script
         run: |
           chmod +x ${{ inputs.lint_script }}
-          ./${{ inputs.lint_script }}
+          ./${{ inputs.lint_script }} ${{ inputs.lint_args }}
