@@ -24,7 +24,7 @@ jobs:
 
       - name: print lint script
         run: |
-          echo {{ inputs.lint_args }}
+          echo ${{ inputs.lint_args }}
 
 
       - name: Run lint script
