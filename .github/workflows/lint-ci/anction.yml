@@ -1,0 +1,18 @@
+# lint-ci/action.yml
+
+name: Lint CI
+description: Run lint.sh from the caller repo
+
+inputs:
+  lint_script:
+    description: "Lint script to run"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run lint script
+      run: |
+        chmod +x ${{ inputs.lint_script }}
+        ./${{ inputs.lint_script }}
+      shell: bash

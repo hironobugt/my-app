@@ -1,3 +1,5 @@
+# common.yml
+
 name: Common Workflow
 
 on:
@@ -11,7 +13,10 @@ jobs:
   run-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Run lint script
-        run: |
-          chmod +x ${{ inputs.lint_script }}
-          ./${{ inputs.lint_script }}
+      - name: Checkout caller repo
+        uses: actions/checkout@v4
+
+      - name: Run lint via action
+        uses: ./lint-ci  # パスはリポジトリ内の相対パスで指定
+        with:
+          lint_script: ${{ inputs.lint_script }}
