@@ -11,9 +11,6 @@ jobs:
   run-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout calling repo
-        uses: actions/checkout@v4
-
       - name: Run lint script
         run: |
           chmod +x ${{ inputs.lint_script }}
