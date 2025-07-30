@@ -1,0 +1,14 @@
+name: echo branch
+on:
+  workflow_call:
+
+jobs:
+  echo-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Print branch name
+        run: git branch --show-current
