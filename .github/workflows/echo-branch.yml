@@ -12,3 +12,9 @@ jobs:
           fetch-depth: 0
       - name: Print branch name
         run: git branch --show-current
+
+      - name: Echo branch name
+        run: 'echo "Current branch is: $(git branch --show-current)"'
+        
+      - name: echo ref
+        run: 'echo "Current ref is: ${{ github.ref }}"'
