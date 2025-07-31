@@ -14,3 +14,4 @@ jobs:
       slack_channel_id: C0939G00VFF
     secrets:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
