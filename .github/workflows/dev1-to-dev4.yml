@@ -15,4 +15,3 @@ jobs:
     secrets:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-      RED_TOKEN: ${{ secrets.RED_TOKEN }}
