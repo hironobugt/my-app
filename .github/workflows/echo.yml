@@ -4,7 +4,7 @@ name: echo
 on:
   push:
     branches:
-      - dev*
+      - 'dev**'
 jobs:
   build:
     runs-on: ubuntu-latest
