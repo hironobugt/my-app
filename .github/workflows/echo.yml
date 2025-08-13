@@ -1,10 +1,10 @@
 # .github/workflows/ci.yml
-name: CI
+name: echo
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-
+  push:
+    branches:
+      - 'dev**'
 jobs:
   build:
     runs-on: ubuntu-latest
