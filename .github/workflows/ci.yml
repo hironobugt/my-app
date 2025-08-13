@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run sleep 
-        run: sleep 300
+        run: echo "This is a placeholder for build steps. Replace with actual build commands."
