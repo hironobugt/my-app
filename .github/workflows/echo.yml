@@ -1,0 +1,14 @@
+# .github/workflows/ci.yml
+name: echo
+
+on:
+  push:
+    branches:
+      - dev*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run sleep 
+        run: echo "This is a placeholder for build steps. Replace with actual build commands."
